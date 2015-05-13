@@ -101,15 +101,10 @@ Guidelines for setup of as new centos 6.6 vm on Virtualbox
   ~$ ./configure --prefix=/usr/local
   ~$ make
   ~$ make altinstall
-  ~$ wget --no-check-certificate https://pypi.python.org/packages/source/s/setuptools/setuptools-12.2.tar.gz (setuptools)
-  ~$ tar -xvf setuptools-12.2.tar.gz
-  ~$ cd setuptools-12.2
-  ~$ python3.4 setup.py install
-  ~$ curl https://raw.githubusercontent.com/pypa/pip/master/contrib/get-pip.py | python3.4 - (pip)
-
-2. Pip (python 3.4): ~$ py get-pip.py
-3. Virtualenvwrapper
 
 
+2. Pip (python 3.4)
+  ~$ py get-pip.py
+  ~$ curl https://raw.githubusercontent.com/pypa/pip/master/contrib/get-pip.py | python3.4
 
-4.
+3. Virtualenvwrapper: ~$ pip install virtualenvwrapper
