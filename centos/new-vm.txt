@@ -1,0 +1,78 @@
+Guidelines for setup of as new centos 6.6 vm on Virtualbox
+
+>>> Resources
+
+1. CentOS-6.6-x86_64-bin-DVD
+2. VirtualBox
+
+>>> Setup
+
+>>>>> Stage 1: settings
+1. Name and operating system
+  a. <operating system>_<project_name>_<index>: centos6.6-arktic.com-n0
+  b. Linux
+  c. Other Linux (64-bit)
+
+2. Memory size: change from default 512MB to gui level 2048MB
+3. Hard drive: change from default 8GB to 12GB
+4. Hard drive file type: default VDI
+5. Storage on physical hard drive: default Dynamically allocated
+6. File location and size: leave as default
+
+>>>>> Stage 2: installation
+1. Start VM
+2. Choose Disk 1 for installation
+3. "Install or upgrade a new system"
+4. Check disk for installation
+5. Reinsert disk from "Devices" menu and press continue
+6. Language and keyboard
+7. Basic storage devices
+8. Overwrite storage
+9. name: default localhost.localdomain
+10. Location: London, Europe
+11. Root password
+12. Write to disk
+13. Install desktop version
+14. Start
+15. Root password: ---
+16. Username/fullname: boo/Boo
+17. KDump and reboot
+18. Login
+19. Remember to connect to "eth0" network
+
+>>>>> Stage 3: basic customisation
+1. Git: ~$ yum install git (su)
+2. Custom bash profile
+  a. set ctrl + Space as shortcut for terminal instance
+  b. ~/code/$ git clone https://github.com/arktic-dev/bash-profile
+  c. ~/code/$ cp ./.vm_profile
+  d. add "source .vm_profile" to ~/.bashrc (run at login and new terminal by default)
+  e. Edit profile:
+    i. Edit -> Profiles -> Default -> Edit...
+    ii. Colors -> Background black, text RGB=(108,233,27)
+
+3. Guest additions for screen size and shared folders
+  a. Activate rpmforge repo
+    ~$ su
+    password:
+    ~$ wget http://packages.sw.be/rpmforge-release/rpmforge-release-0.5.2-2.el6.rf.x86_64.rpm (centos 6 only: http://www.tecmint.com/enable-rpmforge-repository/)
+    ~$ rpm -Uvh rpmforge-release-0.5.2-2.el6.rf.x86_64.rpm (install)
+    ~$ wget http://dag.wieers.com/rpm/packages/RPM-GPG-KEY.dag.txt
+    ~$ rpm --import RPM-GPG-KEY.dag.txt
+    ~$ yum --enablerepo=rpmforge install aria2 (TEST)
+
+  b. Install DKMS, kernel-devel, and guest additions
+    ~$ yum --enablerepo rpmforge install dkms
+    ~$ yum groupinstall "Development Tools"
+    ~$ yum install kernel-devel-$(uname -r) (kernel specific devel tools)
+    ~$ /media/VBOXADDITIONS_4.3.22_98236/VBoxLinuxAdditions.run (run guest additions setup)
+
+  c. Remember to give user permissions to own home folder
+    ~home$ su (/home/`user_dir`/)
+    ~$ chmod a+rwx `user_dir`
+
+>>>>> Stage 4: basic software
+1. Python 3.4
+2. Pip (python 3.4)
+3. Virtualenvwrapper
+4. 
