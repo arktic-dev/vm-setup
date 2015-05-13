@@ -38,7 +38,7 @@ Guidelines for setup of as new centos 6.6 vm on Virtualbox
 16. Username/fullname: boo/Boo
 17. KDump and reboot
 18. Login
-19. Remember to connect to "eth0" network
+19. Remember to connect to "eth0" network, set to connect automatically
 
 >>>>> Stage 3: basic customisation
 1. Git: ~$ yum install git (su)
@@ -65,17 +65,18 @@ Guidelines for setup of as new centos 6.6 vm on Virtualbox
     ~$ yum --enablerepo rpmforge install dkms
     ~$ yum groupinstall "Development Tools"
     ~$ yum install kernel-devel-$(uname -r) (kernel specific devel tools)
-    ~$ /media/VBOXADDITIONS_4.3.22_98236/VBoxLinuxAdditions.run (run guest additions setup)
+    Insert guest additions CD
+    ~$ /media/VBOXADDITIONS_4.3.22_98236/VBoxLinuxAdditions.run (run guest additions setup, or run from CD autoplay)
 
   c. Remember to give user permissions to own home folder
     ~home$ su (/home/`user_dir`/)
     ~$ chmod a+rwx `user_dir`
 
-4. SSH
+5. SSH
   http://stackoverflow.com/questions/5906441/how-to-ssh-to-a-virtualbox-guest-externally-through-a-host
   VirtualBox network, Host port 3022, guest port 22, name ssh, other left blank.
 
-5. Auto login
+6. Auto login
   http://rricketts.com/auto-login-a-user-with-centos-6-4-x86_64/
   http://blog.hostonnet.com/auto-login-to-linux-console-in-centos-6
 
@@ -106,9 +107,9 @@ Guidelines for setup of as new centos 6.6 vm on Virtualbox
   ~$ python3.4 setup.py install
   ~$ curl https://raw.githubusercontent.com/pypa/pip/master/contrib/get-pip.py | python3.4 - (pip)
 
-2. Pip (python 3.4)
-
-
-
+2. Pip (python 3.4): ~$ py get-pip.py
 3. Virtualenvwrapper
+
+
+
 4.
