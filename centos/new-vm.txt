@@ -71,8 +71,44 @@ Guidelines for setup of as new centos 6.6 vm on Virtualbox
     ~home$ su (/home/`user_dir`/)
     ~$ chmod a+rwx `user_dir`
 
+4. SSH
+  http://stackoverflow.com/questions/5906441/how-to-ssh-to-a-virtualbox-guest-externally-through-a-host
+  VirtualBox network, Host port 3022, guest port 22, name ssh, other left blank.
+
+5. Auto login
+  http://rricketts.com/auto-login-a-user-with-centos-6-4-x86_64/
+  http://blog.hostonnet.com/auto-login-to-linux-console-in-centos-6
+
+  ~$ vim /etc/gdm/custom.conf
+
+  change [daemon]
+  AutomaticLoginEnable=true
+  AutomaticLogin=`username`
+
 >>>>> Stage 4: basic software
 1. Python 3.4
+
+  https://www.digitalocean.com/community/tutorials/how-to-set-up-python-2-7-6-and-3-3-3-on-centos-6-4
+  http://g0o0o0gle.com/install-python-3-4-1-centos-6/
+
+  ~$ yum install -y zlib-dev openssl-devel sqlite-devel bzip2-devel
+  ~$ wget http://www.python.org/ftp/python/3.4.1/Python-3.4.1.tar.xz
+  ~$ yum install xz-libs (maybe)
+  ~$ xz -d Python-3.4.1.tar.xz
+  ~$ tar -xvf Python-3.4.1.tar
+  ~$ cd Python-3.4.1/
+  ~$ ./configure --prefix=/usr/local
+  ~$ make
+  ~$ make altinstall
+  ~$ wget --no-check-certificate https://pypi.python.org/packages/source/s/setuptools/setuptools-12.2.tar.gz (setuptools)
+  ~$ tar -xvf setuptools-12.2.tar.gz
+  ~$ cd setuptools-12.2
+  ~$ python3.4 setup.py install
+  ~$ curl https://raw.githubusercontent.com/pypa/pip/master/contrib/get-pip.py | python3.4 - (pip)
+
 2. Pip (python 3.4)
+
+
+
 3. Virtualenvwrapper
-4. 
+4.
