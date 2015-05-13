@@ -108,3 +108,8 @@ Guidelines for setup of as new centos 6.6 vm on Virtualbox
   ~$ curl https://raw.githubusercontent.com/pypa/pip/master/contrib/get-pip.py | python3.4
 
 3. Virtualenvwrapper: ~$ pip install virtualenvwrapper
+4. Apache
+  ~$ su
+  ~$ yum install epel-release
+  ~$ yum install httpd (maybe already installed)
+  ~$ yum install mod_wsgi
