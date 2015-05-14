@@ -1,51 +1,42 @@
 
 Trials and tribulations to install and test Apache on CentOS6.6
 
+>>> Basic installation
+
 ~$ su
 ~$ yum install epel-release
 ~$ yum install httpd (maybe already installed)
 ~$ yum install mod_wsgi
 
-a. Test with sample Django project: remember to serve on 0.0.0.0:xxxx for external access (firewall should already be disabled)
-b. Configure apache
-  ~$ sudo vim /etc/httpd/conf.d/django.conf
-    # Allow apache to directly access static directory
-    Alias /static /home/boo/code/django/test_apache/static
-    <Directory /home/boo/code/django/test_apache/static>
-        Require all granted
-    </Directory>
+>>> Useful apache commands
 
-    # Define root for wsgi
-    <Directory /home/boo/code/django/test_apache/test_apache>
-        <Files wsgi.py>
-            Require all granted
-        </Files>
-    </Directory>
-
-    # wsgi processes
-    WSGIDaemonProcess test_apache python-path=/home/boo/test_apache:/home/boo/.virtualenvs/apache_test/lib/python3.4/site-packages
-    WSGIProcessGroup test_apache
-    WSGIScriptAlias / /home/boo/test_apache/test_apache/wsgi.py
-
-  ~$ sudo usermod -a -G boo apache (create user 'apache' within same group as 'boo')
-  ~$ chmod 710 /home/boo (give apache user access to home directory)
-  ~$ chmod 664 /home/boo/code/django/test_apache/db.sqlite3 (Only if using sqlite)
-  ~$ sudo chown :apache /home/boo/code/django/test_apache/db.sqlite3 (give apache group onwership of db file)
-  ~$ sudo chown :apache /home/boo/code/django/test_apache (Ownership of db parent directory)
-
-c. Run apache: ~$ apachectl start
-d. For status
+a. Run apache: ~$ apachectl start
+b. For status
   i. ~$ yum install links
   ii. ~$ apachectl status
   iii.
-d. Run apache at startup: ~$
+
+c. Run apache at startup: ~$
 
 >>> Tests:
 
 1. Serve single page index.html with apache using a .conf in conf.d.
+  a. Using default httpd.conf, look at DocumentRoot: probably /var/www/html
+  b. Create file 'index.html' in DocumentRoot
+  c. Set permissions for file:
+    ~(root)$ chmod 655 /var/www/html/index.html
+    ~(root)$ chown root:apache /var/www/html/index.html
+    ~(root)$ chmod -R 755 /var/www/html/
+    ~(root)$ chown -R root:apache /var/www/html/
+  d. Login as apache: ~$ su apache -s /bin/bash (After having given apache sudo access)
+  c. Run apache server: ~$ sudo apachectl start
+  d. navigate to localhost:80 (or port set in ListenTo)
+
 2. Serve simple hello world wsgi application from single file and .conf.
+  a. 
+
 3. Serve Django application with wsgi and .conf.
 
 >>> Permissions:
 
-1. 
+1.

@@ -46,6 +46,7 @@ Guidelines for setup of as new centos 6.6 vm on Virtualbox
   ~$ service iptables save
   ~$ service iptables stop
   ~$ chkconfig iptables off
+21. User as sudo: ~$ visudo -> <user> ALL=(ALL) ALL
 
 >>>>> Stage 3: basic customisation
 1. Git: ~$ yum install git (su)
@@ -108,7 +109,6 @@ Guidelines for setup of as new centos 6.6 vm on Virtualbox
   ~$ ./configure --prefix=/usr/local
   ~$ make
   ~$ make altinstall
-
 
 2. Pip (python 3.4)
   ~$ py get-pip.py
