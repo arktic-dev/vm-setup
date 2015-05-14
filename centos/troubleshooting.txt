@@ -1,0 +1,13 @@
+Some basic troubleshooting I have had to do
+
+>>> GNOME desktop won't load
+
+1. remote login should still work.
+2. Login as root
+3. Edit '/etc/inittab'
+4. Change 'id:5:initdefault:' to 'id:5:initdefault:'. 3 is non-GUI mode.
+5. Reboot
+6. As normal user, ~$ startx
+7. Need further delevopments to start automatically and solve problem.
+
+> Last encountered: 14 May 2015

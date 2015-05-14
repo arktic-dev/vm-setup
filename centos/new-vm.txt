@@ -18,6 +18,9 @@ Guidelines for setup of as new centos 6.6 vm on Virtualbox
 4. Hard drive file type: default VDI
 5. Storage on physical hard drive: default Dynamically allocated
 6. File location and size: leave as default
+7. Go to network and set to 'Bridge connection'
+8. Reserve IP on router 192.168.0.1 or 192.168.100.1
+9. Access machine: add line to '/etc/hosts' -> '192.168.0.xx  nx.arktic.com' for example
 
 >>>>> Stage 2: installation
 1. Start VM
@@ -39,6 +42,10 @@ Guidelines for setup of as new centos 6.6 vm on Virtualbox
 17. KDump and reboot
 18. Login
 19. Remember to connect to "eth0" network, set to connect automatically
+20. Disable vm firewall
+  ~$ service iptables save
+  ~$ service iptables stop
+  ~$ chkconfig iptables off
 
 >>>>> Stage 3: basic customisation
 1. Git: ~$ yum install git (su)
@@ -108,8 +115,9 @@ Guidelines for setup of as new centos 6.6 vm on Virtualbox
   ~$ curl https://raw.githubusercontent.com/pypa/pip/master/contrib/get-pip.py | python3.4
 
 3. Virtualenvwrapper: ~$ pip install virtualenvwrapper
-4. Apache
+4. Screen
+
+  http://centoshelp.org/resources/scripts-tools/a-basic-understanding-of-screen-on-centos/
+
   ~$ su
-  ~$ yum install epel-release
-  ~$ yum install httpd (maybe already installed)
-  ~$ yum install mod_wsgi
+  ~$ yum install screen
